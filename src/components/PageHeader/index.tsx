@@ -11,10 +11,11 @@ import styles from './styles';
 interface PageHeaderProps {
   title: string;
   headerRight?: ReactNode;
+  children?: ReactNode;
 }
 
 const PageHeader: React.FC<PageHeaderProps> = ({ title, headerRight, children }) => {
-  const { navigate } = useNavigation();
+  const { navigate } = useNavigation<any>();
   
   function handleGoBack() {
     navigate('Landing');

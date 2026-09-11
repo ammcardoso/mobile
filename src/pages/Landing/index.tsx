@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Image, View, Text, TouchableOpacity } from 'react-native';
+import { Image, View, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 
@@ -13,7 +13,7 @@ import giveClassesIcon from '../../assets/images/icons/give-classes.png';
 import heartIcon from '../../assets/images/icons/heart.png';
 
 function Landing() {
-  const { navigate } = useNavigation();
+  const { navigate } = useNavigation<any>();
   const [totalConnections, setTotalConnections] = useState(0);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ function Landing() {
       const { total } = response.data;
 
       setTotalConnections(total);
-    })
+    });
   }, []);
 
   function handleNavigateToGiveClassesPage() {
