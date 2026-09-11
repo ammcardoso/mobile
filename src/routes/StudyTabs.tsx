@@ -10,31 +10,31 @@ const { Navigator, Screen } = createBottomTabNavigator();
 function StudyTabs() {
   return (
     <Navigator
-      tabBarOptions={{
-        style: {
+      screenOptions={{
+        tabBarStyle: {
           elevation: 0,
           shadowOpacity: 0,
           height: 100,
         },
-        tabStyle: {
+        tabBarItemStyle: {
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'center',
         },
-        iconStyle: {
+        tabBarIconStyle: {
           flex: 0,
           width: 20,
           height: 20,
         },
-        labelStyle: {
+        tabBarLabelStyle: {
           fontFamily: 'Archivo_700Bold',
           fontSize: 13,
           marginLeft: 16,
         },
-        inactiveBackgroundColor: '#fafafc',
-        activeBackgroundColor: '#ebebf5',
-        inactiveTintColor: '#c1bcbc',
-        activeTintColor: '#32264d',
+        tabBarInactiveBackgroundColor: '#fafafc',
+        tabBarActiveBackgroundColor: '#ebebf5',
+        tabBarInactiveTintColor: '#c1bcbc',
+        tabBarActiveTintColor: '#32264d',
       }}
     >
       <Screen 
@@ -44,7 +44,7 @@ function StudyTabs() {
           tabBarLabel: 'Coaches',
           tabBarIcon: ({ color, size, focused }) => {
             return (
-              <Ionicons name="ios-easel" size={size} color={focused ? '#8257e5' : color}/>
+              <Ionicons name="easel" size={size} color={focused ? '#8257e5' : color}/>
             );
           }
         }}
@@ -56,7 +56,7 @@ function StudyTabs() {
           tabBarLabel: 'Favoritos',
           tabBarIcon: ({ color, size, focused }) => {
             return (
-              <Ionicons name="ios-heart" size={size} color={focused ? '#8257e5' : color}/>
+              <Ionicons name="heart" size={size} color={focused ? '#8257e5' : color}/>
             );
           }
         }}
