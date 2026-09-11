@@ -48,6 +48,18 @@ const styles = StyleSheet.create({
     color: '#6a6180',
   },
 
+  agenda: {
+    marginHorizontal: 24,
+    fontFamily: 'Poppins_400Regular',
+    fontSize: 14,
+    lineHeight: 24,
+    color: '#6a6180',
+  },
+
+  space: {
+    marginTop: 16,
+  },
+
   footer: {
     backgroundColor: '#fafafc',
     padding: 24,

@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { View, Image, Text, Linking } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 
-import heartOutlineIcon from '../../assets/images/icons/heart-outline.png'
-import unfavoriteIcon from '../../assets/images/icons/unfavorite.png'
-import whatsappIcon from '../../assets/images/icons/whatsapp.png'
+import heartOutlineIcon from '../../assets/images/icons/heart-outline.png';
+import unfavoriteIcon from '../../assets/images/icons/unfavorite.png';
+import whatsappIcon from '../../assets/images/icons/whatsapp.png';
 import api from '../../services/api';
 
 import styles from './styles';
@@ -18,6 +18,12 @@ export interface Coach {
   name: string;
   subject: string;
   whatsapp: string;
+  schedule: Array<{
+    id: number;
+    week_day: number;
+    from: number;
+    to: number;
+  }>;
 }
 
 interface CoachItemProps {
@@ -62,6 +68,15 @@ const CoachItem: React.FC<CoachItemProps> = ({ coach, favorited }) => {
     await AsyncStorage.setItem('favorites', JSON.stringify(favoritesArray));
   }
 
+  // Função para converter minutos em formato de hora ("08:00")
+  function formatMinutesToTime(minutes: number) {
+    const hours = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+    return `${String(hours).padStart(2, '0')}:${String(mins).padStart(2, '0')}`;
+  }
+
+  const weekDays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+
   return (
     <View style={styles.container}>
       <View style={styles.profile}>
@@ -79,6 +94,21 @@ const CoachItem: React.FC<CoachItemProps> = ({ coach, favorited }) => {
       <Text style={styles.bio}>
         {coach.bio}
       </Text>
+
+      <View style={styles.space} />
+
+      <Text style={styles.agenda}>
+        Horários disponíveis:
+      </Text>
+
+      {/* Seção de horários disponíveis no mobile */}
+      <View style={styles.agenda}>
+        {coach.schedule && coach.schedule.map(item => (
+          <View key={item.id} >
+            <Text  >{weekDays[item.week_day]} {formatMinutesToTime(item.from)} - {formatMinutesToTime(item.to)}</Text>
+          </View>
+        ))}
+      </View>
 
       <View style={styles.footer}>
         <Text style={styles.price}>
@@ -106,8 +136,6 @@ const CoachItem: React.FC<CoachItemProps> = ({ coach, favorited }) => {
           </RectButton>
         </View>
       </View>
-
-
     </View>
   );
 }
